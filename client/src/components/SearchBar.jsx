@@ -11,9 +11,10 @@ import { addTask } from "../redux/slices/taskSlice";
 
 export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
-  const [newTask, setTask] = React.useState("")
+  const [newTask, setTask] = React.useState("");
+  const [showErr,setShowErr] = React.useState(false)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -21,12 +22,18 @@ export default function SearchBar() {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleAddTask = () => {
-    dispatch(() => addTask(newTask));
-    setTask("")
-    handleClose()
-  }
+    if(newTask === ""){
+      setShowErr(true)
+    }else{
+      setShowErr(false)
+      dispatch(addTask({ value: newTask }));
+      handleClose();
+      setTask("");
+    }
+
+  };
 
   return (
     <div className="w-52 mt-4 ms-36 mb-2">
@@ -34,14 +41,13 @@ export default function SearchBar() {
         <Button
           sx={{
             color: "#047857",
-            border:"2px solid #047857",
-            fontWeight:"bold",
-            paddingX:"25px",
+            border: "2px solid #047857",
+            fontWeight: "bold",
+            paddingX: "25px",
             "&:hover": {
-                  borderColor :"#065f46",
-                  borderWidth:2
+              borderColor: "#065f46",
+              borderWidth: 2,
             },
-            
           }}
           variant="outlined"
           onClick={handleClickOpen}
@@ -59,7 +65,6 @@ export default function SearchBar() {
               const formJson = Object.fromEntries(formData.entries());
               const email = formJson.email;
               console.log(email);
-              handleClose();
             },
           }}
         >
@@ -74,7 +79,6 @@ export default function SearchBar() {
               className=""
               autoFocus
               focused
-              required
               margin="dense"
               id="name"
               name="task"
@@ -98,6 +102,7 @@ export default function SearchBar() {
                 },
               }}
             />
+            {showErr && <small className="text-red-700 font-semibold">Input something to add task!</small>}
           </DialogContent>
           <DialogActions>
             <Button
