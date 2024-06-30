@@ -33,8 +33,16 @@ const taskSlice = createSlice({
       const { source, taskId } = action.payload;
       state.tasks[source] = state.tasks[source].filter((task) => task.id !== taskId);
     },
+    editTask:(state,action) => {
+      const { source, taskId, taskvalue } = action.payload;
+      if(taskvalue === "" || taskvalue === " ")state.tasks[source] = state.tasks[source].filter(task => task.id !== taskId)
+      const taskToEdit = state.tasks[source].find((task) => task.id === taskId);
+      if (taskToEdit) {
+        taskToEdit.value = taskvalue;
+      }
+    }
   },
 });
 
-export const { addTask, moveTask, deleteTask } = taskSlice.actions;
+export const { addTask, moveTask,editTask, deleteTask } = taskSlice.actions;
 export default taskSlice.reducer;

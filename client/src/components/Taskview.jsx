@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, moveTask } from "../redux/slices/taskSlice";
 import { useDrop, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import Task from './Task';
 import { ItemTypes } from '../utils/constants';
 
@@ -34,7 +35,7 @@ const Taskview = () => {
     return (
       <div
         ref={drop}
-        className="w-1/3 border-emerald-600 hover:border-4 m-2 p-1 rounded-xl duration-100"
+        className="w-full sm:w-4/12 border-emerald-600 hover:border-4 rounded-xl duration-100"
       >
         <h3 className="border-2 bg-emerald-700 text-white py-2 rounded-lg mx-1">
           {col}
@@ -57,8 +58,8 @@ const Taskview = () => {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="flex mx-auto text-center w-3/4 justify-between border-2 border-slate-200 rounded-xl hover:border-0 duration-100">
+    <DndProvider backend={window.innerWidth < 768 ? TouchBackend : HTML5Backend}>
+      <div className="flex flex-wrap mx-auto text-center w-full sm:w-3/4 justify-between border-2 border-slate-200 rounded-xl hover:border-0 duration-100">
         {allTasks.map((col) => (
           <Column key={col} col={col} tasks={tasks} />
         ))}
