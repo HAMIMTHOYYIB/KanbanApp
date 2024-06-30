@@ -28,11 +28,10 @@ export default function SearchBar() {
       setShowErr(true)
     }else{
       setShowErr(false)
-      dispatch(addTask({ value: newTask }));
+      dispatch(addTask({value:newTask}));
       handleClose();
       setTask("");
     }
-
   };
 
   return (
@@ -61,10 +60,10 @@ export default function SearchBar() {
             component: "form",
             onSubmit: (event) => {
               event.preventDefault();
-              const formData = new FormData(event.currentTarget);
-              const formJson = Object.fromEntries(formData.entries());
-              const email = formJson.email;
-              console.log(email);
+              handleAddTask()
+              // const formData = new FormData(event.currentTarget);
+              // const formJson = Object.fromEntries(formData.entries());
+              // const email = formJson.email;
             },
           }}
         >
@@ -122,7 +121,7 @@ export default function SearchBar() {
                   backgroundColor: "#065f46",
                 },
               }}
-              onClick={handleAddTask}
+              // onClick={handleAddTask}
             >
               Add Task
             </Button>
