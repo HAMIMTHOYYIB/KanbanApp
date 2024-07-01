@@ -34,13 +34,13 @@ const Task = ({ task, index, source, changeStatus, handleDeleteTask }) => {
           type="text"
           onChange={(e) => setEditVal(e.target.value)}
           value={editVal}
-          className="flex-grow text-center bg-emerald-500 p-2"
+          className="flex-grow text-center bg-emerald-500 p-2 rounded-2xl"
         />
       ) : (
         <p className="flex-grow">{task.value}</p>
       )}
-      <button onClick={handleEditTask} className='me-3 hover:scale-110 scale-90 duration-100 bg-emerald-500 p-2 rounded-xl'>
-        {isEdit ? <i className="fa-solid fa-check hover:scale-105 scale-90 duration-100 bg-emerald-500 p-2 rounded-xl"></i> : <i className="fa-regular fa-pen-to-square"></i>}
+      <button onClick={handleEditTask} className='me-3 hover:scale-105 scale-90 duration-100 bg-emerald-500 p-2 rounded-xl'>
+        {isEdit ? <i className="fa-solid fa-check hover:scale-100 scale-90 duration-100 bg-emerald-500 p-1 rounded-xl"></i> : <i className="fa-regular fa-pen-to-square"></i>}
       </button>
       <button
         className="hover:scale-110 scale-90 duration-100 bg-emerald-500 rounded-xl p-2"
