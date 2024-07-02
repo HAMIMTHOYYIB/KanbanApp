@@ -1,14 +1,17 @@
-import SearchBar from "./components/SearchBar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import Store from "./redux/Store";
-import Taskview from "./components/Taskview";
+import Home from "./pages/Home";
+
 const App = () => {
   return (
     <Provider store={Store}>
-      <div className="bg-white text-black font-sans">
-        <SearchBar />
-        <Taskview />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<div>signup page</div>} />
+        </Routes>
+      </Router>
     </Provider>
   );
 };
