@@ -35,7 +35,7 @@ const Taskview = () => {
     return (
       <div
         ref={drop}
-        className="w-full sm:w-4/12 border-emerald-600 hover:border-4 rounded-xl duration-100"
+        className="w-full sm:w-4/12 border-emerald-600 hover:border-4 rounded-xl pb-16 duration-100"
       >
         <h3 className="border-2 bg-emerald-700 text-white py-2 rounded-lg mx-1">
           {col}
